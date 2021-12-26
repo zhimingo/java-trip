@@ -14,6 +14,11 @@ package stopthreads;
  * java.util.concurrent.Exchanger.exchange(V)
  * java.nio.channels.InterruptibleChannel相关方法
  * java.nio.channels.Selector的相关方法
+ *
+ * Thread.interrupted() 判断当前线程是否被中断，同时会清除中断标志位
+ * 此处的线程是当前运行的线程
+ *
+ * thread.isInterrupted() 判断当前线程对象是否被中断，不会清除中断标志位
  */
 public class RightWayStopThreadInProd implements Runnable {
 
@@ -39,5 +44,6 @@ public class RightWayStopThreadInProd implements Runnable {
         thread.start();
         Thread.sleep(1000);
         thread.interrupt();
+        Thread.currentThread().isInterrupted();
     }
 }
